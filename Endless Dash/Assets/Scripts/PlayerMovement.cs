@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float jump;
+    public Animator animator;
+
     private Rigidbody2D rb;
     private bool isGrounded;
 
@@ -25,6 +27,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector2.up * jump);
+            animator.SetTrigger("Jump");
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            animator.SetBool("Slide", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            animator.SetBool("Slide", false);
         }
     }
 
