@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject spawnObject;
-    public GameObject[] spawnPoints;
-    public float timer;
-    public float spawnDelays;
+    [SerializeField] private GameObject spawnObject;
+    [SerializeField] private GameObject[] spawnPoints;
+    [SerializeField] private float timer;
+    [SerializeField] private float spawnDelays;
+
+    public float speedMultiplier;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speedMultiplier += Time.deltaTime * 0.1f;
+
         timer += Time.deltaTime;
 
         if (timer > spawnDelays)

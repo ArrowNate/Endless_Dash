@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float jump;
-    public Animator animator;
+    [SerializeField] private float jump;
+    [SerializeField] private Animator animator;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -53,6 +54,14 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetBool("Death", true);
         }
     }
 }
