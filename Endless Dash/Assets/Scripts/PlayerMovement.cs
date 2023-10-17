@@ -7,9 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float jump;
     [SerializeField] private Animator animator;
+    [SerializeField] GameManager gameManager;
 
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool isDead;
 
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             animator.SetBool("Death", true);
+            gameManager.gameOver();
         }
     }
 }

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject spawnObject;
     [SerializeField] private GameObject[] spawnPoints;
+    [SerializeField] private GameObject gameOverUI;
     [SerializeField] private float timer;
     [SerializeField] private float spawnDelays;
     [SerializeField] private Text distanceUI;
@@ -37,5 +39,15 @@ public class GameManager : MonoBehaviour
             int randNum = Random.Range(0, 3);
             Instantiate(spawnObject, spawnPoints[randNum].transform.position, Quaternion.identity);
         }
+    }
+
+    public void gameOver()
+    {
+        gameOverUI.SetActive(true);
+    }
+
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
