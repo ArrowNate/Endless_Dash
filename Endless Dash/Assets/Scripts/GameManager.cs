@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private float timer;
     [SerializeField] private float spawnDelays;
+    [SerializeField] private Text distanceUI;
+    [SerializeField] private float distance;
 
     public float speedMultiplier;
 
@@ -20,9 +23,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distanceUI.text = "Distance: " + distance.ToString("F2");
+
+        distance += Time.deltaTime;
+
         speedMultiplier += Time.deltaTime * 0.1f;
 
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * 0.5f;
 
         if (timer > spawnDelays)
         {
