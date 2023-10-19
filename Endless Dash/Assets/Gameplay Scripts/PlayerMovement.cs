@@ -27,19 +27,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (gameManager.isGamePaused == false)
         {
-            rb.AddForce(Vector2.up * jump);
-            animator.SetTrigger("Jump");
-        }
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                rb.AddForce(Vector2.up * jump);
+                animator.SetTrigger("Jump");
+            }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            animator.SetBool("Slide", true);
-        }
-        else if (Input.GetKeyUp(KeyCode.S))
-        {
-            animator.SetBool("Slide", false);
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                animator.SetBool("Slide", true);
+            }
+            else if (Input.GetKeyUp(KeyCode.S))
+            {
+                animator.SetBool("Slide", false);
+            }
         }
     }
 
@@ -65,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("Death", true);
             gameManager.gameOver();
+            gameManager.pauseGameWithDelay();
+            gameManager.isGamePaused = true;
         }
     }
 }
