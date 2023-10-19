@@ -67,8 +67,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             animator.SetBool("Death", true);
-            gameManager.gameOver();
-            gameManager.pauseGameWithDelay();
+            gameManager.GameOver();
+            gameManager.PauseGameWithDelay();
             gameManager.isGamePaused = true;
         }
     }

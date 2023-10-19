@@ -36,30 +36,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void gameOver()
+    public void GameOver()
     {
         gameOverUI.SetActive(true);
-        pauseGameWithDelay();
+        PauseGameWithDelay();
     }
 
-    public void restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         isGamePaused = false;
         Time.timeScale = 1;
     }
 
-    public void mainMenu()
+    public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void quit()
+    public void Quit()
     {
         Application.Quit();
     }
 
-    public void pauseGameWithDelay()
+    public void PauseGameWithDelay()
     {
         StartCoroutine(PauseGameAfterDelay(0.3f));
     }
